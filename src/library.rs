@@ -789,6 +789,15 @@ impl Type {
         }
     }
 
+
+    pub fn virtual_methods(&self) -> &[Function] {
+        match *self {
+            Type::Interface(ref i) => &i.virtual_methods,
+            Type::Class(ref c) => &c.virtual_methods,
+            _ => &[],
+        }
+    }
+
     pub fn is_fundamental(&self) -> bool {
         matches!(*self, Type::Fundamental(_))
     }
@@ -1083,6 +1092,12 @@ impl Library {
                             &format!("{}::", full_name),
                             x.functions(),
                             "METHOD",
+                        );
+                        self.not_bound_functions(
+                            env,
+                            &format!("{}::", full_name),
+                            x.virtual_methods(),
+                            "VIRTUAL-METHOD",
                         );
                     }
                 }

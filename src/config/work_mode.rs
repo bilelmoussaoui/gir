@@ -6,6 +6,7 @@ pub enum WorkMode {
     Sys,             // generate -sys with FFI
     Doc,             // generate documentation file
     DisplayNotBound, // Show not bound types
+    Subclass,        // generate sub-classing traits
 }
 
 impl WorkMode {
@@ -32,6 +33,7 @@ impl FromStr for WorkMode {
             "sys" => Ok(WorkMode::Sys),
             "doc" => Ok(WorkMode::Doc),
             "not_bound" => Ok(WorkMode::DisplayNotBound),
+            "subclass" => Ok(WorkMode::Subclass),
             _ => Err(format!("Wrong work mode '{}'", s)),
         }
     }

@@ -395,6 +395,7 @@ impl Library {
             }
             "doc" => parser.text().map(|t| doc = Some(t)),
             "doc-deprecated" => parser.text().map(|t| doc_deprecated = Some(t)),
+            "source-position" => parser.ignore_element(),
             _ => Err(parser.unexpected_element(elem)),
         })?;
 

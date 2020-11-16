@@ -13,6 +13,7 @@ mod functions;
 mod general;
 mod object;
 mod objects;
+mod subclass;
 mod parameter;
 mod properties;
 mod property_body;
@@ -34,6 +35,7 @@ pub fn generate(env: &Env) {
         WorkMode::Normal => normal_generate(env),
         WorkMode::Sys => sys::generate(env),
         WorkMode::Doc => doc::generate(env),
+        WorkMode::Subclass => subclass::generate(env),
         WorkMode::DisplayNotBound => {}
     }
 }
